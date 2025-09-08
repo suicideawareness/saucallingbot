@@ -24,13 +24,13 @@ jobs:
 
       # Restore, Build & Publish (to ./published)
       - name: Restore
-        run: dotnet restore ./src/SauCallingBot/SauCallingBot.csproj
+        run: dotnet restore ./<exact/path>/SauCallingBot.csproj
 
       - name: Build
-        run: dotnet build ./src/SauCallingBot/SauCallingBot.csproj --configuration Release --no-restore
+        run: dotnet build   ./<exact/path>/SauCallingBot.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./src/SauCallingBot/SauCallingBot.csproj -c Release -o ./published --no-build
+        run: dotnet publish ./<exact/path>/SauCallingBot.csproj -c Release -o ./published --no-build
 
       # Login to Azure using the user-assigned identity secrets that Azure created
       - name: Login to Azure
@@ -47,3 +47,4 @@ jobs:
           app-name: 'saucallingbot'
           slot-name: 'Production'
           package: ./published
+
